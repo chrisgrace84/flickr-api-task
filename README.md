@@ -1,1 +1,1 @@
-# flickr-api-task
+# Flickr API task
