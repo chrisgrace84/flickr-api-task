@@ -4,7 +4,7 @@ import axios from 'axios';
 import Aux from './hoc/Aux';
 import MainNav from './components/layout/MainNav';
 import Layout from './components/layout/Layout';
-import Card from './components/ui/Card';
+import PhotoList from './components/photos/PhotoList';
 
 function App() {
     const [isLoading, setIsloading]       = useState(true);
@@ -25,7 +25,7 @@ function App() {
         }).then(response => {
             setIsloading(false);
             setloadedPhotos(response.data.photos.photo);
-            
+
             console.log(response.data.photos.photo);
         });
 
@@ -35,35 +35,8 @@ function App() {
         <Aux>
             <MainNav />
             <Layout>
-                {isLoading ? (
-                    <div>
-                        Loading
-                    </div>
-                ) : (
-                    <ul>
-                        {
-                        loadedPhotos.map(photo => (
-                            <li key={photo.id}>
-                                <Card>
-                                    <div>
-                                        <img src={photo.url_n} alt={photo.title} />
-                                    </div>
-                                    <div>
-                                        <h3>{photo.title}</h3>
-                                        <h4>{photo.owner_name}</h4>
-                                    </div>
-                                    <div>
-                                        {photo.description._content}
-                                    </div>
-                                    <div>
-                                        {photo.tags}
-                                    </div>
-                                </Card>
-                            </li>
-                        ))
-                        }
-                    </ul>
-                )}
+                {isLoading && <div>Loading...</div>}
+                {!isLoading && <PhotoList photoList={loadedPhotos} />}
             </Layout>
         </Aux>
     )
