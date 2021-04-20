@@ -1,23 +1,26 @@
 import Card from '../ui/Card';
 import classes from './PhotoItem.module.css';
 
-function PhotoItem(props) {
+function PhotoItem({ id, image_url, title, owner, author, description, tags }) {
+    console.log(tags);
     return (
-        <li key={props.id} className={classes.item}>
+        <li key={id} className={classes.item}>
             <Card>
-                <div className={classes.image}>
-                    <img src={props.image_url} alt={props.title} />
+                <div className={classes.image} style={{backgroundImage: `url(${image_url})`}}></div>
+                <div className={classes.head}>
+                    <h3><a href={`https://www.flickr.com/photos/${owner}/${id}`} target="_blank" rel="noreferrer">{title.substring(0, 50)}</a></h3>
+                    <h4><a href={`https://www.flickr.com/photos/${owner}`} target="_blank" rel="noreferrer">{author}</a></h4>
                 </div>
-                <div className={classes.content}>
-                    <h3>{props.title}</h3>
-                    <h4>{props.author}</h4>
+                {description ? (
+                <div className={classes.description}>
+                    Description: {description.substring(0, 50)}
                 </div>
-                <div className={classes.content}>
-                    {props.description}
+                ) : null}
+                {tags ? (
+                <div className={classes.tags}>
+                    {tags}
                 </div>
-                <div className={classes.content}>
-                    {props.tags}
-                </div>
+                ) : null}
             </Card>
         </li>
     );

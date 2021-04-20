@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import axios from 'axios';
 
-import Aux from './hoc/Aux';
 import MainNav from './components/layout/MainNav';
 import Layout from './components/layout/Layout';
 import PhotoList from './components/photos/PhotoList';
 
+const { REACT_APP_FLICKR_API_KEY: API_KEY } = process.env
+
 function App() {
-    const [isLoading, setIsloading]       = useState(true);
     const [loadedPhotos, setloadedPhotos] = useState([]);
 
     useEffect(() => {
@@ -16,29 +16,35 @@ function App() {
             method: 'get',
             url: 'https://api.flickr.com/services/rest',
             params: {
-                method: 'flickr.photos.getRecent',
-                api_key: '91376182c32d3a23c9f7b86d793c07ae',
-                extras: 'url_n, owner_name, date_taken, views, description, tags',
+                method: 'flickr.photos.search',
+                api_key: API_KEY,
+                extras: 'url_n, owner_name, description, tags',
                 format: 'json',
                 nojsoncallback: 1,
+                per_page: 24,
+                tags: 'holidayextrascom, holidayextrasmoustache, holidayextrasrednose, holidayextrassponsors, holidayextrasteamphoto, holidaymaker, holidfayextras, holidayextrasbuilding,', // search by some tags used by Holidays extras
+                safe_search: 1 // safe search: 1 for safe; 2 for moderate; 3 for restricted.
             },
         }).then(response => {
-            setIsloading(false);
-            setloadedPhotos(response.data.photos.photo);
+            const photos = response.data.photos.photo;
 
-            console.log(response.data.photos.photo);
-        });
+            setloadedPhotos(photos);
+
+        }).catch(e => console.log(e)); // errors to be handled here 
 
     }, []);
 
     return (
-        <Aux>
+        <Fragment>
             <MainNav />
             <Layout>
-                {isLoading && <div>Loading...</div>}
-                {!isLoading && <PhotoList photoList={loadedPhotos} />}
+                {
+                    loadedPhotos.length === 0 
+                    ? <div>Loading...</div>
+                    : <PhotoList photoList={loadedPhotos} /> 
+                }
             </Layout>
-        </Aux>
+        </Fragment>
     )
 }
 

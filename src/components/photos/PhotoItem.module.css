@@ -1,13 +1,17 @@
 .item {
-    margin: 2rem 0;
+    position: relative;
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 2rem;
 }
 
 .image {
     width: 100%;
-    height: 20rem;
-    overflow: hidden;
+    height: 160px;
     border-top-right-radius: 6px;
     border-top-left-radius: 6px;
+    background-size: cover;
 }
 
 .image img {
@@ -15,12 +19,48 @@
     object-fit: cover;
 }
 
-.content {
+.head {
     text-align: center;
-    padding: 1rem;
+    padding: 0.8rem;
 }
 
-.content h3 {
-    font-size: 1.25rem;
+.head h3 {
+    font-size: 1rem;
+    margin: 0 0 10px;
     color: #2c292b;
+}
+
+.description,
+.tags {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+}
+
+.head h3,
+.description,
+.tags {
+    white-space: break-spaces;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width: 576px) {
+    .item {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (min-width: 768px) {
+    .item {
+        flex: 0 0 33.3333333%;
+        max-width: 33.3333333%;
+    }
+}
+
+@media (min-width: 992px) {
+    .item{
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
 }
