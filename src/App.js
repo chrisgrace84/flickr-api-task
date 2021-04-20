@@ -21,8 +21,8 @@ function App() {
                 extras: 'url_n, owner_name, description, tags',
                 format: 'json',
                 nojsoncallback: 1,
-                per_page: 24,
-                tags: 'holidayextrascom, holidayextrasmoustache, holidayextrasrednose, holidayextrassponsors, holidayextrasteamphoto, holidaymaker, holidfayextras, holidayextrasbuilding,', // search by some tags used by Holidays extras
+                per_page: 24, // with more time I would use this parameter to control the amount of photos loaded. I would update its state on scroll
+                tags: 'holidayextrascom, holidayextrasmoustache, holidayextrasrednose, holidayextrassponsors, holidayextrasteamphoto, holidaymaker', // search by some tags used by Holidays extras
                 safe_search: 1 // safe search: 1 for safe; 2 for moderate; 3 for restricted.
             },
         }).then(response => {
@@ -39,8 +39,8 @@ function App() {
             <MainNav />
             <Layout>
                 {
-                    loadedPhotos.length === 0 
-                    ? <div>Loading...</div>
+                    !loadedPhotos.length 
+                    ? <div className="loading">Loading...</div>
                     : <PhotoList photoList={loadedPhotos} /> 
                 }
             </Layout>

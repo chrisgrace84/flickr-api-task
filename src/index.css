@@ -15,6 +15,21 @@ h1 {
     color: #FFF;
 }
 
+a {
+    color: #0063dc;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+a:hover {
+    opacity: 0.6;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+}
+
 @media (min-width: 768px) {
     h1 {
         font-size: 2rem;
