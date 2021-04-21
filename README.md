@@ -72,23 +72,14 @@ my-app/
     Card.module.css 
 ```
 
-## API KEY
+## API key
 
-The API key is hidden in an .env file for security. However, you can use the API key below for this app.
+You will need a flickr api key to run the app.
 
-REACT_APP_FLICKR_API_KEY=a268bd1d94e8450ca2ff111d71e533e6
+This should be stored in a .env file with REACT_APP_FLICKR_API_KEY=<your key here>
 
+## Installation
 
-## Download axios to fetch the data
+To run this app, clone it and run npm install.
 
-Using npm:
-
-`$ npm install axios`
-
-Using bower:
-
-`$ bower install axios`
-
-Using yarn:
-
-`$ yarn add axios`
+`$ npm install`
