@@ -39,6 +39,12 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+## Installation
+
+To run this app, clone it and run npm install.
+
+`$ npm install`
+
 ## Folder Structure
 
 After creation, your project should look like this:
@@ -77,9 +83,3 @@ my-app/
 You will need a flickr api key to run the app.
 
 This should be stored in a .env file with REACT_APP_FLICKR_API_KEY=<your key here>
-
-## Installation
-
-To run this app, clone it and run npm install.
-
-`$ npm install`
